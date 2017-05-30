@@ -1,0 +1,6 @@
+rootProject.name = 'online-forum'
+include 'model'
+include 'test-db'
+include 'dao-api'
+include 'dao'
+

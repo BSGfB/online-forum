@@ -1,0 +1,76 @@
+ext {
+
+}
+
+allprojects {
+    group 'com.forum'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    ext.junitVersion                = "4.12"
+    ext.log4jVersion                = "2.7"
+    ext.springVersion               = "4.3.8.RELEASE"
+    ext.h2Version                   = "1.4.193"
+    ext.thymeleafVersion            = "3.0.3.RELEASE"
+    ext.jacksonDatabindVersion      = "2.8.6"
+    ext.servletApiVersion           = "3.1.0"
+    ext.aspectjrtVersion            = "1.8.10"
+    ext.hibernateVersion            = "5.2.9.Final"
+    ext.hibernateValidatorVersion   = "5.4.1.Final"
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        testCompile("junit:junit:${junitVersion}")
+        testCompile("org.springframework:spring-test:${springVersion}")
+
+        compile("org.springframework:spring-core:${springVersion}")
+        compile("org.springframework:spring-beans:${springVersion}")
+        compile("org.springframework:spring-context:${springVersion}")
+    }
+
+}
+
+project('model') {
+    dependencies {
+        compile("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
+        compile("org.hibernate:hibernate-core:${hibernateVersion}")
+
+    }
+}
+
+project('test-db') {
+    dependencies {
+        compile("org.springframework:spring-jdbc:${springVersion}")
+        compile("com.h2database:h2:${h2Version}")
+    }
+}
+
+project('dao-api') {
+    dependencies {
+        compile project(':model')
+
+    }
+}
+
+project('dao') {
+    dependencies {
+        compile project(':model')
+        compile project(':test-db')
+        compile project(':dao-api')
+
+        compile("org.springframework:spring-test:${springVersion}")
+        compile("org.springframework:spring-tx:${springVersion}")
+        compile("org.springframework:spring-orm:${springVersion}")
+
+    }
+}
