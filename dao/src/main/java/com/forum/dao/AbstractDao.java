@@ -40,6 +40,7 @@ public abstract class AbstractDao<T> {
         Session session = getCurrentSession();
         Serializable identifier = session.save(entity);
         session.flush();
+        session.clear();
 
         return identifier;
     }

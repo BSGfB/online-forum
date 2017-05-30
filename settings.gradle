@@ -3,4 +3,5 @@ include 'model'
 include 'test-db'
 include 'dao-api'
 include 'dao'
+include 'aop'
 

@@ -42,10 +42,10 @@ public class ChannelDaoImplTest {
         assertNotNull("Returned id must be not null", channelId);
 
         Channel channel = new Channel("Test", "Description");
-        channel.setChannelId(1);
+        channel.setChannelId(channelId);
         channelDao.update(channel);
 
-        Channel updatedChannel = channelDao.getById(1);
+        Channel updatedChannel = channelDao.getById(channelId);
 
         assertNotNull("Returned channel must be not null", updatedChannel);
         assertEquals("Id", channel.getChannelId(), updatedChannel.getChannelId());
@@ -70,7 +70,6 @@ public class ChannelDaoImplTest {
         assertNotNull("Returned id must be not null", channelId);
 
         List<Channel> channelList = channelDao.getAll();
-        channelList.stream().forEach(channel -> System.out.println(channel.toString()));
 
         assertNotNull("Returned channel list must be not null", channelList);
         assertTrue("Channel list must have one or more channels", channelList.size() > 1);

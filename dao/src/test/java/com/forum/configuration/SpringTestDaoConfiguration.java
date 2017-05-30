@@ -12,9 +12,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableAspectJAutoProxy
 @Import({SpringJDBCConfiguration.class})
-@ComponentScan({"com.forum.dao"})
-@PropertySource({"classpath:hibernate.properties", "classpath:database.properties"})
+@ComponentScan({"com.forum.dao", "com.forum.aop.aspect"})
+@PropertySource({"classpath:hibernate.properties", "classpath:database.properties", "classpath:query/query.properties"})
 public class SpringTestDaoConfiguration {
 
     public static final String HIBERNATE_DIALECT = "hibernate.dialect";
