@@ -90,3 +90,12 @@ project('aop') {
 
     }
 }
+
+project('service-api') {
+    dependencies {
+        compile project(':model')
+
+        compile("org.springframework:spring-tx:${springVersion}")
+
+    }
+}

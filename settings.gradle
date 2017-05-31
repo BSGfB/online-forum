@@ -4,4 +4,5 @@ include 'test-db'
 include 'dao-api'
 include 'dao'
 include 'aop'
+include 'service-api'
 
