@@ -10,31 +10,28 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Loggable
 @Repository
 public class ChannelDaoImpl extends AbstractDao<Channel> implements ChannelDao {
 
     @Autowired
     private Environment environment;
 
-    @Loggable
     @Override
     public Integer add(Channel channel) {
         return (Integer) this.create(channel);
     }
 
-    @Loggable
     @Override
     public void update(Channel channel) {
         super.update(channel);
     }
 
-    @Loggable
     @Override
     public void delete(Integer id) {
         super.delete(id);
     }
 
-    @Loggable
     @Override
     public List<Channel> getAll() {
         Session session = getCurrentSession();
@@ -44,7 +41,6 @@ public class ChannelDaoImpl extends AbstractDao<Channel> implements ChannelDao {
         return channelList;
     }
 
-    @Loggable
     @Override
     public Channel getById(Integer id) {
         return this.read(id);

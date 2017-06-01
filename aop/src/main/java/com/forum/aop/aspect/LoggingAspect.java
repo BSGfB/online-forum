@@ -15,7 +15,7 @@ public class LoggingAspect {
 
     private static final Logger LOGGER = LogManager.getLogger(LoggingAspect.class);
 
-    @Around(value = "@annotation(com.forum.aop.annotation.Loggable)")
+    @Around(value = "@annotation(com.forum.aop.annotation.Loggable) || execution(* *(..)) &&  within(@com.forum.aop.annotation.Loggable *)")
     public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
         StringBuffer beforeLog = new StringBuffer(joinPoint.getSignature().toLongString()).append(" args: ");
 

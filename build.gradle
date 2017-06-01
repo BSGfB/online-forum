@@ -20,6 +20,7 @@ allprojects {
     ext.aspectjrtVersion            = "1.8.10"
     ext.hibernateVersion            = "5.2.9.Final"
     ext.hibernateValidatorVersion   = "5.4.1.Final"
+    ext.easymockVersion             = "3.4"
 }
 
 subprojects {
@@ -69,7 +70,6 @@ project('dao') {
         compile project(':dao-api')
         compile project(':aop')
 
-        compile("org.springframework:spring-test:${springVersion}")
         compile("org.springframework:spring-tx:${springVersion}")
         compile("org.springframework:spring-orm:${springVersion}")
 
@@ -96,6 +96,18 @@ project('service-api') {
         compile project(':model')
 
         compile("org.springframework:spring-tx:${springVersion}")
+
+    }
+}
+
+project('service') {
+    dependencies {
+        compile project(':service-api')
+        compile project(':dao')
+        compile project(':aop')
+
+        compile("org.springframework:spring-tx:${springVersion}")
+        compile("org.easymock:easymock:${easymockVersion}")
 
     }
 }

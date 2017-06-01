@@ -5,4 +5,5 @@ include 'dao-api'
 include 'dao'
 include 'aop'
 include 'service-api'
+include 'service'
 
