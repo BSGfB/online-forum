@@ -4,6 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -17,9 +19,12 @@ public class Channel implements Serializable {
     @Column(name = "channel_id")
     private Integer channelId;
 
+    @NotNull
+    @Size(min = 1, max = 64)
     @Column(name = "name")
     private String name;
 
+    @Size(min = 0, max = 255)
     @Column(name = "description")
     private String description;
 
@@ -31,6 +36,12 @@ public class Channel implements Serializable {
     }
 
     public Channel(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Channel(Integer channelId, String name, String description) {
+        this.channelId = channelId;
         this.name = name;
         this.description = description;
     }

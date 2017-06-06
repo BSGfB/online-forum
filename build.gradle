@@ -21,6 +21,7 @@ allprojects {
     ext.hibernateVersion            = "5.2.9.Final"
     ext.hibernateValidatorVersion   = "5.4.1.Final"
     ext.easymockVersion             = "3.4"
+    ext.glassfishElVersion           = "3.0.0"
 }
 
 subprojects {
@@ -43,6 +44,8 @@ subprojects {
 
 project('model') {
     dependencies {
+        testCompile("org.glassfish:javax.el:${glassfishElVersion}")
+
         compile("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
         compile("org.hibernate:hibernate-core:${hibernateVersion}")
 
